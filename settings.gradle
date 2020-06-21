@@ -1,0 +1,2 @@
+include ':app', ':arms', ':arms-autolayout', ':arms-imageloader-glide'
+rootProject.name = "WanAndroidMVP"
