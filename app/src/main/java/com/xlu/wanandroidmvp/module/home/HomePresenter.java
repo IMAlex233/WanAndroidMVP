@@ -65,7 +65,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                   @Override
                   public void onSuccess(WanAndroidResponse<ArticleInfo> response) {
                       ArticleInfo info = response.getData();
-                      mRootView.showMoreArticles(info);
+                      mRootView.showArticles(info);
                   }
 
                   @Override

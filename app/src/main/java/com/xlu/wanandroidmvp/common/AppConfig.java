@@ -15,7 +15,7 @@ public class AppConfig {
     private String password;
     private boolean isRemember;
     private boolean login;
-    private int rvAnim = RvAnimUtils.RvAnim.NONE;
+    private int rvAnim = RvAnimUtils.RvAnim.SCALEIN;
     private int darkModePosition = DarkModeUtils.POSITION_NIGHT_FOLLOW_SYSTEM;
     private String avatar;
     private String poem;

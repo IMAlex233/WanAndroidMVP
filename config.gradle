@@ -11,9 +11,12 @@ ext {
 
     version = [
             androidSupportSdkVersion: "28.0.0",
-            androidXSdkVersion      : "1.1.0",
+            //androidXSdkVersion      : "1.2.0-rc01",
+
             retrofitSdkVersion      : "2.7.2",
+
             glideSdkVersion         : "4.11.0",
+
             butterknifeSdkVersion   : "10.2.1",
             rxlifecycleSdkVersion   : "1.0",
             rxlifecycle2SdkVersion  : "2.2.2",
@@ -31,17 +34,22 @@ ext {
             "support-design"           : "com.android.support:design:${version["androidSupportSdkVersion"]}",
             "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
             "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "support-annotations"      : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "annotations"      : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
 
-            //androidx
-            "appcompat"                : "androidx.appcompat:appcompat:${version["androidXSdkVersion"]}",
-            "design"          : "com.google.android.material:material:${version["androidXSdkVersion"]}",
+            //androidx 全部依赖稳定版
+            "appcompat-x"              : "androidx.appcompat:appcompat:1.1.0",
+            "material"                 : "com.google.android.material:material:1.1.0",
+            "annotations-x"            : "androidx.annotation:annotation:1.1.0",
+            "recyclerview-x"           : "androidx.recyclerview:recyclerview:1.1.0",
+            "recyclerview-x-selection" : "androidx.recyclerview:recyclerview-selection:1.1.0-rc01",
+            "lifecycle-extensions-x"   : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+            "lifecycle-runtime-x"      : "androidx.lifecycle:lifecycle-runtime:2.2.0",
+            "constraintlayout-x"       : "androidx.constraintlayout:constraintlayout:1.1.3",
             "legacy-support-v4"        : "androidx.legacy:legacy-support-v4:1.0.0",
-            "cardview"                 : "androidx.cardview:cardview:1.0.0",
-            "annotations"              : "androidx.annotation:annotation:${version["androidXSdkVersion"]}",
-            "recyclerview"             : "androidx.recyclerview:recyclerview:${version["androidXSdkVersion"]}",
-            "constraintlayout"         : "androidx.constraintlayout:constraintlayout:1.1.3",
+            "cardview-x"               : "androidx.cardview:cardview:1.0.0",
+            "navigation-fragment"       : "androidx.navigation:navigation-fragment:2.2.0",
+            "navigation-ui"             : "androidx.navigation:navigation-ui:2.2.0",
 
 
 
@@ -51,12 +59,15 @@ ext {
             "retrofit-converter-scalars": "com.squareup.retrofit2:converter-scalars:${version["retrofitSdkVersion"]}",
             "retrofit-adapter-rxjava"  : "com.squareup.retrofit2:adapter-rxjava:${version["retrofitSdkVersion"]}",
             "retrofit-adapter-rxjava2" : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+
             "okhttp3"                  : "com.squareup.okhttp3:okhttp:3.12.9",
             "okhttp4"                  : "com.squareup.okhttp3:okhttp:4.0.0",
             "okhttp-urlconnection"     : "com.squareup.okhttp:okhttp-urlconnection:2.0.0",
+
             "glide"                    : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
             "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
             "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+
             "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
             "logging-interceptor"       : "com.squareup.okhttp3:logging-interceptor:3.4.1",
 

@@ -1,16 +1,12 @@
 package com.xlu.wanandroidmvp.common;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import com.jess.arms.base.App;
 import com.jess.arms.base.BaseApplication;
 import com.jess.arms.base.delegate.AppDelegate;
@@ -18,26 +14,12 @@ import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
-import com.jinrishici.sdk.android.factory.JinrishiciFactory;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.tencent.bugly.Bugly;
 import com.vondear.rxtool.RxTool;
-import com.xlu.wanandroidmvp.R;
 import com.xlu.wanandroidmvp.di.common.CommonComponent;
 import com.xlu.wanandroidmvp.di.common.CommonModule;
 import com.xlu.wanandroidmvp.di.common.DaggerCommonComponent;
 import com.xlu.wanandroidmvp.utils.Utils;
-import com.ycbjie.webviewlib.X5WebUtils;
-
 import org.jetbrains.annotations.NotNull;
-
-import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import timber.log.Timber;
 
 public class Application extends BaseApp implements App {

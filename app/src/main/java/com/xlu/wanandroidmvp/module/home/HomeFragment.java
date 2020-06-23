@@ -2,6 +2,7 @@ package com.xlu.wanandroidmvp.module.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.jess.arms.utils.ArmsUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xlu.wanandroidmvp.R;
 import com.xlu.wanandroidmvp.adapter.ArticleAdapter;
+import com.xlu.wanandroidmvp.common.AppConfig;
 import com.xlu.wanandroidmvp.common.Const;
 import com.xlu.wanandroidmvp.common.ScrollTopListener;
 import com.xlu.wanandroidmvp.di.component.DaggerHomeComponent;
@@ -43,7 +45,7 @@ import timber.log.Timber;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements HomeContract.View, ScrollTopListener {
-
+    private String TAG = "HomeFraagment";
 
     Unbinder unbinder;
     @BindView(R.id.mRecyclerView)
@@ -75,12 +77,14 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
     public void initData(@Nullable Bundle savedInstanceState) {
         initRefreshLayout();
         initScrollList();
-        mPresenter.requestArticle(0);
+        lazyLoadData();
+
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG,"onCreateView");
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
@@ -89,7 +93,7 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
     private void initScrollList() {
         assert mPresenter != null;
         adapter = new ArticleAdapter(new ArrayList<>(), ArticleAdapter.TYPE_COMMON);
-        //loadAnimation(AppConfig.getInstance().getRvAnim());
+        adapter.openLoadAnimation(AppConfig.getInstance().getRvAnim());
         LinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(mContext);
         ArmsUtils.configRecyclerView(mRecyclerView, layoutManager);
         mRecyclerView.setAdapter(adapter);
@@ -142,6 +146,7 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
 //        launchActivity(intent);
     }
 
+    //freshlayout事件处理
     private void initRefreshLayout() {
         SmartRefreshUtils.with(refreshLayout)
                          .pureScrollMode()
@@ -176,6 +181,7 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG,"onResume");
         hideLoading();
     }
 
@@ -197,22 +203,16 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
 
 
     @Override
-    public void showMoreArticles(ArticleInfo articleInfo) {
+    public void showArticles(ArticleInfo articleInfo) {
         this.pageCount = articleInfo.getPageCount();
         List<Article> data = articleInfo.getDatas();
         adapter.addData(data);
         adapter.loadMoreComplete();
     }
 
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        hideLoading();
-    }
-
     @Override
     public void refresh(List<Article> articleList) {
+        //刷新，替换数据
         adapter.replaceData(articleList);
     }
 
@@ -223,8 +223,16 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
 
 
     @Override
+    public void onPause() {
+        Log.d(TAG,"onPause");
+        super.onPause();
+        hideLoading();
+    }
+
+
+    @Override
     protected void lazyLoadData() {
-        showLoading();
+        //showLoading();
         page = 0;
         assert mPresenter != null;
         mPresenter.requestArticle(page);
@@ -237,7 +245,7 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
 
     @Override
     public void scrollToTopRefresh() {
-        lazyLoadData();
+        //lazyLoadData();
     }
 
     /**
@@ -260,19 +268,6 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
         }
     }
 
-    private void loadAnimation(int type) {
-        adapter.openLoadAnimation(type);
-    }
-
-    @Subscriber
-    public void onAnimChanged(Event event) {
-        if (null != event && event.getEventCode() == Const.EventCode.CHANGE_RV_ANIM) {
-            Integer animType = (Integer)event.getData();
-            if (animType != null && animType > 0) {
-                loadAnimation(animType);
-            }
-        }
-    }
 
     @Subscriber
     public void onArticleCollected(Event<Article> event) {
@@ -306,6 +301,24 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
     @Override
     public void showNoNetwork() {
         //statusView.showNoNetwork();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG,"onStop");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.d(TAG,"onDestoryView");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG,"onDestory");
+        super.onDestroy();
     }
 
     @Override

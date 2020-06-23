@@ -31,14 +31,17 @@ dependencies {
         exclude module: 'coordinatorlayout'
     }
     //androidx
-    api(rootProject.ext.dependencies["appcompat"]) {
+    api(rootProject.ext.dependencies["appcompat-x"]) {
         exclude module: 'annotation'
     }
-    compileOnly rootProject.ext.dependencies["design"]
-    api(rootProject.ext.dependencies["recyclerview"]) {
+    compileOnly rootProject.ext.dependencies["material"]
+    api(rootProject.ext.dependencies["recyclerview-x"]) {
         exclude module: 'annotation'
     }
     api rootProject.ext.dependencies["annotations"]
+
+    implementation rootProject.ext.dependencies["lifecycle-extensions-x" ]
+    implementation rootProject.ext.dependencies["lifecycle-runtime-x" ]
 
     //view
     compileOnly rootProject.ext.dependencies["autolayout"]

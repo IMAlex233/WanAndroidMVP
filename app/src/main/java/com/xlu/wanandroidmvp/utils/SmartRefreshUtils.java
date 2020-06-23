@@ -62,20 +62,18 @@ public class SmartRefreshUtils {
         this.mRefreshListener = refreshListener;
         if (refreshListener == null) {
             mRefreshLayout.setEnableRefresh(false);
-        }
-        else {
+        } else {
             mRefreshLayout.setEnablePureScrollMode(false);
             mRefreshLayout.setEnableRefresh(true);
             mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
                 @Override
                 public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                     refreshLayout.finishRefresh((int) Const.HttpConst.DEFAULT_TIMEOUT, false, false);
-                    if (showPoem) {
-//                        PoemUtils.getPoemAsync(mRefreshLayout);
-                    }
-                    mRefreshListener.onRefresh();
+
+                    mRefreshListener.onRefresh();   //结束fresh动画
                 }
             });
+
         }
         return this;
     }
@@ -116,22 +114,7 @@ public class SmartRefreshUtils {
         mRefreshLayout.finishRefresh(false);
         mRefreshLayout.finishLoadMore(false);
     }
-/*
-    public SmartRefreshUtils showPoem() {
-        this.showPoem = true;
-        RefreshHeader header = mRefreshLayout.getRefreshHeader();
-        if (header == null) {
-            throw new IllegalStateException("the RefreshHeader can not be null");
-        }
-        Timber.e("调用getPoem");
-        String poem = AppConfig.getInstance().getPoem();
-        Timber.e(StringUtils.isEmpty(poem) ?  "空的呢" : poem);
-        if (header instanceof PoemHeader) {
-            ((PoemHeader)header).setHeaderText(poem);
-        }
-        mRefreshLayout.setRefreshHeader(header);
-        return this;
-    }*/
+
 
     public boolean isFinishing() {
         return mRefreshLayout.getState().isFinishing;

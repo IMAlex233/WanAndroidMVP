@@ -48,6 +48,10 @@ public class WxFragment extends Fragment {
         return fragment;
     }
 
+    public static WxFragment newInstance() {
+        return new WxFragment();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

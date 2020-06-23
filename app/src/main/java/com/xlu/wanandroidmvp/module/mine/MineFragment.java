@@ -48,6 +48,10 @@ public class MineFragment extends Fragment {
         return fragment;
     }
 
+    public static MineFragment newInstance() {
+        return new MineFragment();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,34 +2,36 @@ package com.xlu.wanandroidmvp.module.main;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.xlu.wanandroidmvp.R;
+import com.xlu.wanandroidmvp.adapter.FragmentAdapter;
 import com.xlu.wanandroidmvp.di.component.DaggerMainComponent;
 
+
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.nav_view)
     BottomNavigationView navView;
 
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_home, R.id.navigation_qa,R.id.navigation_wx, R.id.navigation_mine).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+
     }
 
     @Override
@@ -44,7 +46,69 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        initNavView();
 
+
+    }
+
+    private void initNavView() {
+        // 去除背景底色
+        navView.setItemIconTintList(null);
+        // 实例化adapter，得到fragment
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+        // 建立连接
+        viewPager.setAdapter(fragmentAdapter);
+
+        setNavigation();
+    }
+
+    /**
+     * 设置底部导航栏
+     */
+    public void setNavigation() {
+
+        // 底部导航栏点击事件
+        navView.setOnNavigationItemSelectedListener(menuItem -> {
+            //setToolbar(menuItem.getTitle().toString());
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_home:
+                    viewPager.setCurrentItem(0);
+                    break;
+                case R.id.navigation_qa:
+                    viewPager.setCurrentItem(1);
+                    break;
+                case R.id.navigation_wx:
+                    viewPager.setCurrentItem(2);
+                    break;
+                case R.id.navigation_mine:
+                    viewPager.setCurrentItem(3);
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        });
+
+        //viewpager监听事件，当viewpager滑动时得到对应的fragment碎片
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                MenuItem menuItem = navView.getMenu().getItem(position);
+                menuItem.setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
