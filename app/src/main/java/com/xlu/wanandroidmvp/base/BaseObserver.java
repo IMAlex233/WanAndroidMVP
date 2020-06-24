@@ -1,12 +1,13 @@
 package com.xlu.wanandroidmvp.base;
 
+import android.app.Application;
 import android.net.ParseException;
 import android.text.TextUtils;
 import com.google.gson.JsonParseException;
 import com.jess.arms.mvp.IView;
 import com.xlu.wanandroidmvp.R;
-import com.xlu.wanandroidmvp.common.Application;
 import com.xlu.wanandroidmvp.common.Const;
+import com.xlu.wanandroidmvp.common.WApplication;
 import com.xlu.wanandroidmvp.event.Event;
 import com.xlu.wanandroidmvp.http.manger.ApiException;
 import com.xlu.wanandroidmvp.result.BaseBean;
@@ -24,7 +25,7 @@ public abstract class BaseObserver<T extends BaseBean> extends ResourceObserver<
 
     protected IView mView;
     private String mErroMessage;
-    private Application mApp = Application.getInstance();
+    private WApplication mApp = WApplication.getInstance();
 
     public BaseObserver(IView mView) {
         this.mView = mView;

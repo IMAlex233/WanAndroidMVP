@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_wx"
         android:icon="@drawable/ic_wx"
-        android:title="公众号" />
+        android:title="导航" />
 
     <item
         android:id="@+id/navigation_mine"

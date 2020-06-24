@@ -125,13 +125,13 @@ public class AppConfig {
     }
 
     public String getPoem() {
-        String s = StringUtils.isEmpty(poem) ? Application.getInstance().getResources().getString(R.string.app_name) : poem;
+        String s = StringUtils.isEmpty(poem) ? WApplication.getInstance().getResources().getString(R.string.app_name) : poem;
         return s;
     }
 
     public void setPoem(String poem) {
         if (StringUtils.isEmpty(poem)) {
-            poem = Application.getInstance().getResources().getString(R.string.app_name);
+            poem = WApplication.getInstance().getResources().getString(R.string.app_name);
         }
         this.poem = poem;
         spUtils.put("poem", poem);

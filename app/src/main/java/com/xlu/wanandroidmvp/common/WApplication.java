@@ -1,12 +1,17 @@
 package com.xlu.wanandroidmvp.common;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.jess.arms.base.App;
 import com.jess.arms.base.BaseApplication;
 import com.jess.arms.base.delegate.AppDelegate;
@@ -14,22 +19,30 @@ import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.tencent.bugly.Bugly;
 import com.vondear.rxtool.RxTool;
-import com.xlu.wanandroidmvp.di.common.CommonComponent;
-import com.xlu.wanandroidmvp.di.common.CommonModule;
-import com.xlu.wanandroidmvp.di.common.DaggerCommonComponent;
+import com.xlu.wanandroidmvp.R;
+import com.xlu.wanandroidmvp.utils.DarkModeUtils;
+import com.xlu.wanandroidmvp.utils.SPUtils;
 import com.xlu.wanandroidmvp.utils.Utils;
 import org.jetbrains.annotations.NotNull;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import timber.log.Timber;
 
-public class Application extends BaseApp implements App {
+public class WApplication extends BaseApp implements App {
 
 
     private AppLifecycles mAppDelegate;
-    private static Application mApplication;
-    private CommonComponent commonComponent;
+    private static WApplication mApplication;
 
-    public static Application getInstance() {
+    public static WApplication getInstance() {
         return mApplication;
     }
 
@@ -51,11 +64,12 @@ public class Application extends BaseApp implements App {
             this.mAppDelegate.onCreate(this);
         }
         mApplication = this;
-        commonComponent = DaggerCommonComponent.builder().commonModule(new CommonModule()).build();
-        init();
+        // 暗黑模式
+        loadDarkMode();
+        delayInit();
     }
 
-    private void init() {
+    private void delayInit() {
         //设置线程的优先级，不与主线程抢资源
         HandlerThread thread = new HandlerThread("app_delay_init_thread", Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
@@ -63,21 +77,25 @@ public class Application extends BaseApp implements App {
         new Handler(thread.getLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Utils.init(Application.this);
+                Utils.init(WApplication.this);
                 RxTool.init(getApp());
-//                // Bugly
-//                Bugly.init(getApplicationContext(), Const.APP_ID, false);
-//                // X5
-//                X5WebUtils.init(getApp());
-//                // 今日诗词
-//                JinrishiciFactory.init(getApp());
-//                // 开启 Debug 模式下可以打印网络请求日志
-//                RetrofitUrlManager.getInstance().setDebug(true);
-//                // 初始化sp
-//                SPUtils.create(getApplicationContext(), "cookies_prefs");
-//                CrashUtils.init();
+                // Bugly
+                Bugly.init(getApplicationContext(), Const.APP_ID, false);
+                // 开启 Debug 模式下可以打印网络请求日志
+                RetrofitUrlManager.getInstance().setDebug(true);
+                // 初始化sp
+                SPUtils.create(getApplicationContext(), "cookies_prefs");
             }
         }, 5000L);
+    }
+
+
+
+    public static void loadDarkMode() {
+        int position = AppConfig.getInstance().getDarkModePosition();
+        int mode = DarkModeUtils.getMode(position);
+        Timber.e("当前模式 %s, mode:%s", DarkModeUtils.getName(position), mode);
+        AppCompatDelegate.setDefaultNightMode(mode);
     }
 
     /**
@@ -103,7 +121,6 @@ public class Application extends BaseApp implements App {
                 mAppDelegate.getClass().getName(), App.class.getName());
         return ((App)mAppDelegate).getAppComponent();
     }
-
 
 
     /**

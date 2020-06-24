@@ -31,13 +31,14 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     // 私有成员mFragments，加载页面碎片
     private List<Fragment> mFragments = new ArrayList<>();
 
-    public FragmentAdapter(FragmentManager fragmentManager) {
+    public FragmentAdapter(FragmentManager fragmentManager,List<Fragment> fragments) {
         super(fragmentManager);
         // 加载初始化Fragment
-        mFragments.add(HomeFragment.newInstance());
+        mFragments = fragments;
+/*        mFragments.add(HomeFragment.newInstance());
         mFragments.add(QAFragment.newInstance());
         mFragments.add(WxFragment.newInstance());
-        mFragments.add(MineFragment.newInstance());
+        mFragments.add(MineFragment.newInstance());*/
     }
 
     @Override

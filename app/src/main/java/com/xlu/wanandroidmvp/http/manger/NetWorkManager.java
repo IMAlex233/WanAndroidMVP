@@ -1,5 +1,6 @@
 package com.xlu.wanandroidmvp.http.manger;
 
+import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -7,8 +8,8 @@ import android.net.NetworkInfo;
 import com.didichuxing.doraemonkit.kit.network.okhttp.DoraemonInterceptor;
 import com.didichuxing.doraemonkit.kit.network.okhttp.DoraemonWeakNetworkInterceptor;
 import com.xlu.wanandroidmvp.BuildConfig;
-import com.xlu.wanandroidmvp.common.Application;
 import com.xlu.wanandroidmvp.common.Const;
+import com.xlu.wanandroidmvp.common.WApplication;
 import com.xlu.wanandroidmvp.http.api.WanAndroidService;
 
 import java.util.Objects;
@@ -78,8 +79,8 @@ public class NetWorkManager {
                           .readTimeout(Const.HttpConst.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                           .writeTimeout(Const.HttpConst.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                           .connectTimeout(Const.HttpConst.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                          .addInterceptor(new AddCookiesInterceptor(Application.getInstance()))
-                          .addInterceptor(new SaveCookiesInterceptor(Application.getInstance()))
+                          .addInterceptor(new AddCookiesInterceptor(WApplication.getInstance()))
+                          .addInterceptor(new SaveCookiesInterceptor(WApplication.getInstance()))
                           //用于模拟弱网的拦截器
                           .addNetworkInterceptor(new DoraemonWeakNetworkInterceptor())
                           //网络请求监控的拦截器
@@ -102,7 +103,7 @@ public class NetWorkManager {
     }
 
     public static boolean isNetWorkAvailable() {
-        ConnectivityManager manager = (ConnectivityManager)Application.getInstance()
+        ConnectivityManager manager = (ConnectivityManager)WApplication.getInstance()
                                                                        .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = manager != null ? manager.getActiveNetworkInfo() : null;
         return null != info && info.isAvailable();

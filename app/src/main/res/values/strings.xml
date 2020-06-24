@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">WanAndroidMVP</string>
-    <string name="title_home">主页</string>
-    <string name="title_wx">公总号</string>
+    <!--    <string name="title_home">主页</string>
+    <string name="title_wx">导航</string>
     <string name="title_qa">问答</string>
-    <string name="title_mine">我的</string>
+    <string name="title_mine">我的</string>-->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

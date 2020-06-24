@@ -2,37 +2,22 @@ package com.xlu.wanandroidmvp.module.home;
 
 import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.http.imageloader.ImageLoader;
-import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.utils.RxLifecycleUtils;
-import com.xlu.wanandroidmvp.R;
 import com.xlu.wanandroidmvp.base.BaseWanObserver;
-import com.xlu.wanandroidmvp.common.AppConfig;
-import com.xlu.wanandroidmvp.common.Application;
 import com.xlu.wanandroidmvp.common.CollectHelper;
 import com.xlu.wanandroidmvp.http.bean.BannerImg;
-import com.xlu.wanandroidmvp.http.manger.NetWorkManager;
 import com.xlu.wanandroidmvp.result.WanAndroidResponse;
 import com.xlu.wanandroidmvp.http.bean.Article;
 import com.xlu.wanandroidmvp.http.bean.ArticleInfo;
 import com.xlu.wanandroidmvp.http.manger.RetryWithDelay;
-import com.xlu.wanandroidmvp.utils.ObjectUtils;
 import com.xlu.wanandroidmvp.utils.RxScheduler;
-import com.xlu.wanandroidmvp.utils.StringUtils;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.ResourceObserver;
-import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import okhttp3.ResponseBody;
 
 
 @FragmentScope

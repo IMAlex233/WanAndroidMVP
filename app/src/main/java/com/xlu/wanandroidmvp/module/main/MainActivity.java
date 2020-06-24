@@ -2,6 +2,7 @@ package com.xlu.wanandroidmvp.module.main;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,7 +14,14 @@ import com.jess.arms.di.component.AppComponent;
 import com.xlu.wanandroidmvp.R;
 import com.xlu.wanandroidmvp.adapter.FragmentAdapter;
 import com.xlu.wanandroidmvp.di.component.DaggerMainComponent;
+import com.xlu.wanandroidmvp.module.home.HomeFragment;
+import com.xlu.wanandroidmvp.module.mine.MineFragment;
+import com.xlu.wanandroidmvp.module.qa.QAFragment;
+import com.xlu.wanandroidmvp.module.wx.WxFragment;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import timber.log.Timber;
@@ -27,6 +35,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     ViewPager viewPager;
 
 
+    private List<Fragment> mFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +56,19 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         initNavView();
-
-
     }
 
     private void initNavView() {
+        mFragments= new ArrayList<>();
+        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(QAFragment.newInstance());
+        mFragments.add(WxFragment.newInstance());
+        mFragments.add(MineFragment.newInstance());
+
         // 去除背景底色
         navView.setItemIconTintList(null);
         // 实例化adapter，得到fragment
-        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),mFragments);
         // 建立连接
         viewPager.setAdapter(fragmentAdapter);
 

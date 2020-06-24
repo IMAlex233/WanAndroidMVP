@@ -39,7 +39,7 @@ public interface WanAndroidService {
      */
     @POST("user/login")
     @FormUrlEncoded
-    Observable<WanAndroidResponse<UserData>> login(@Field("username") String username, @Field("password") String password); //@QueryMap LinkedHashMap<String, String> map
+    Observable<WanAndroidResponse<com.xlu.wanandroidmvp.http.bean.UserData>> login(@Field("username") String username, @Field("password") String password); //@QueryMap LinkedHashMap<String, String> map
 
     /**
      * 退出登录

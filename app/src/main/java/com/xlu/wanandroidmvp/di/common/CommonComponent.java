@@ -1,8 +1,11 @@
 package com.xlu.wanandroidmvp.di.common;
 
 import com.xlu.wanandroidmvp.http.bean.UserData;
+
 import javax.inject.Singleton;
+
 import dagger.Component;
+
 
 /**
  * @Author xlu

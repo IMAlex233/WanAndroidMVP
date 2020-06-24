@@ -1,5 +1,6 @@
 package com.xlu.wanandroidmvp.adapter;
 
+import android.app.Application;
 import android.text.Html;
 import android.widget.ImageView;
 
@@ -11,9 +12,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.xlu.wanandroidmvp.R;
-import com.xlu.wanandroidmvp.common.Application;
+import com.xlu.wanandroidmvp.common.WApplication;
 import com.xlu.wanandroidmvp.http.bean.Article;
-import com.xlu.wanandroidmvp.utils.JUtils;
 import com.xlu.wanandroidmvp.utils.StringUtils;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class ArticleAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
     public static final int TYPE_COLLECTION = 2;
 
     private int mType;
-    private RequestOptions options = new RequestOptions().error(Application.getInstance().getDrawable(R.color.red))
+    private RequestOptions options = new RequestOptions().error(WApplication.getInstance().getDrawable(R.color.red))
                                                          .transform(new RoundedCorners(20));
     private LikeListener likeListener;
 
