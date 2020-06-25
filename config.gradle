@@ -34,7 +34,7 @@ ext {
             "support-design"           : "com.android.support:design:${version["androidSupportSdkVersion"]}",
             "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
             "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "annotations"      : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
 
             //androidx 全部依赖稳定版
@@ -48,8 +48,8 @@ ext {
             "constraintlayout-x"       : "androidx.constraintlayout:constraintlayout:1.1.3",
             "legacy-support-v4"        : "androidx.legacy:legacy-support-v4:1.0.0",
             "cardview-x"               : "androidx.cardview:cardview:1.0.0",
-            "navigation-fragment"       : "androidx.navigation:navigation-fragment:2.2.0",
-            "navigation-ui"             : "androidx.navigation:navigation-ui:2.2.0",
+            "navigation-fragment"      : "androidx.navigation:navigation-fragment:2.2.0",
+            "navigation-ui"            : "androidx.navigation:navigation-ui:2.2.0",
 
 
 
@@ -69,7 +69,7 @@ ext {
             "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
 
             "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
-            "logging-interceptor"       : "com.squareup.okhttp3:logging-interceptor:3.4.1",
+            "logging-interceptor"      : "com.squareup.okhttp3:logging-interceptor:3.4.1",
 
             //view
             "autolayout"               : "com.zhy:autolayout:1.4.5",

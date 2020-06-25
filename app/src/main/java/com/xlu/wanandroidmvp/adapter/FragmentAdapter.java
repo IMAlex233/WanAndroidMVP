@@ -6,11 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-import com.xlu.wanandroidmvp.module.home.HomeFragment;
-import com.xlu.wanandroidmvp.module.mine.MineFragment;
-import com.xlu.wanandroidmvp.module.qa.QAFragment;
-import com.xlu.wanandroidmvp.module.wx.WxFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 

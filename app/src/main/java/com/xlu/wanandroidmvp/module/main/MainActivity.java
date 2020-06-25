@@ -16,8 +16,8 @@ import com.xlu.wanandroidmvp.adapter.FragmentAdapter;
 import com.xlu.wanandroidmvp.di.component.DaggerMainComponent;
 import com.xlu.wanandroidmvp.module.home.HomeFragment;
 import com.xlu.wanandroidmvp.module.mine.MineFragment;
+import com.xlu.wanandroidmvp.module.navi.KnowledgeFragment;
 import com.xlu.wanandroidmvp.module.qa.QAFragment;
-import com.xlu.wanandroidmvp.module.wx.WxFragment;
 
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mFragments= new ArrayList<>();
         mFragments.add(HomeFragment.newInstance());
         mFragments.add(QAFragment.newInstance());
-        mFragments.add(WxFragment.newInstance());
+        mFragments.add(KnowledgeFragment.newInstance());
         mFragments.add(MineFragment.newInstance());
 
         // 去除背景底色
