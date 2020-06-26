@@ -1,6 +1,5 @@
 package com.xlu.wanandroidmvp.module.navi;
 
-import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,15 +51,14 @@ public class KnowledgeFragment extends BaseLazyLoadFragment<KnowledgePresenter> 
     }
 
     @Override
-    public View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                         @Nullable Bundle savedInstanceState) {
+    public View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_knowledge, container, false);
     }
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         initView();
-        mPresenter.requestTreeData();
+        //mPresenter.requestTreeData();
     }
 
     @Override
@@ -81,11 +79,11 @@ public class KnowledgeFragment extends BaseLazyLoadFragment<KnowledgePresenter> 
     }
 
     private void switchToTabActivity(int position, Tab data) {
-        Intent intent = new Intent(mContext, TabActivity.class);
+/*        Intent intent = new Intent(mContext, TabActivity.class);
         intent.putExtra(Const.Key.KEY_TAB_FROM_TYPE, Const.Type.TYPE_TAB_KNOWLEDGE);
         intent.putExtra(Const.Key.KEY_TAB_DATA, data);
         intent.putExtra(Const.Key.KEY_TAB_CHILD_POSITION, position);
-        launchActivity(intent);
+        launchActivity(intent);*/
     }
 
     private void initRefreshLayout() {
@@ -146,7 +144,7 @@ public class KnowledgeFragment extends BaseLazyLoadFragment<KnowledgePresenter> 
 
     @Override
     public void scrollToTopRefresh() {
-        lazyLoadData();
+        //lazyLoadData();
     }
 
 }
