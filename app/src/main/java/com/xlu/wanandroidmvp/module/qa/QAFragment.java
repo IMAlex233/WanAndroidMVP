@@ -26,7 +26,6 @@ import com.xlu.wanandroidmvp.utils.RvAnimUtils;
 import com.xlu.wanandroidmvp.utils.SmartRefreshUtils;
 import com.xlu.wanandroidmvp.utils.WrapContentLinearLayoutManager;
 
-import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,12 +214,5 @@ public class QAFragment extends BaseLazyLoadFragment<QAPresenter> implements QAC
         lazyLoadData();
     }
 
-    @Subscriber
-    public void onAnimChanged(Event event) {
-        if (null != event && event.getEventCode() == Const.EventCode.CHANGE_RV_ANIM) {
-            if (adapter != null) {
-                RvAnimUtils.loadAnimation(adapter);
-            }
-        }
-    }
+
 }

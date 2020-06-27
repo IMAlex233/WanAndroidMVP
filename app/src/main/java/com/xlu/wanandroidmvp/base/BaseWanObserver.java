@@ -15,8 +15,8 @@ import com.xlu.wanandroidmvp.http.manger.NetWorkManager;
 import com.xlu.wanandroidmvp.result.BaseWanBean;
 import com.xlu.wanandroidmvp.utils.StringUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
-import org.simple.eventbus.EventBus;
 
 import java.io.InterruptedIOException;
 import java.net.ConnectException;

@@ -104,13 +104,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginSuccess() {
-/*        if (getFragmentManager() != null) {
-            back();
-            EventBusManager.getInstance().post(new Event<>(Const.EventCode.LOGIN_SUCCESS, null));
-        }*/
-        Toast.makeText(this,"success",Toast.LENGTH_LONG).show();
-        //onBackPressed();
-        //ToastUtils.showShort("SUCCESS");
+
+        EventBusManager.getInstance().post(new Event<>(Const.EventCode.LOGIN_SUCCESS, null));
+        //Toast.makeText(this,"success",Toast.LENGTH_LONG).show();
+        onBackPressed();
     }
 
     @Override

@@ -13,8 +13,8 @@ import com.xlu.wanandroidmvp.http.manger.ApiException;
 import com.xlu.wanandroidmvp.result.BaseBean;
 import com.xlu.wanandroidmvp.utils.StringUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
-import org.simple.eventbus.EventBus;
 import java.io.InterruptedIOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;

@@ -30,9 +30,6 @@ import com.xlu.wanandroidmvp.http.bean.BannerImg;
 import com.xlu.wanandroidmvp.utils.SmartRefreshUtils;
 import com.xlu.wanandroidmvp.utils.ToastUtils;
 import com.xlu.wanandroidmvp.utils.WrapContentLinearLayoutManager;
-import com.youth.banner.Banner;
-
-import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -248,42 +245,6 @@ public class HomeFragment extends BaseLazyLoadFragment<HomePresenter> implements
         //lazyLoadData();
     }
 
-    /**
-     * 登录成功
-     */
-    @Subscriber
-    public void onLoginSuccess(Event event) {
-        if (null != event && event.getEventCode() == Const.EventCode.LOGIN_SUCCESS) {
-            lazyLoadData();
-        }
-    }
-
-    /**
-     * 退出登录
-     */
-    @Subscriber
-    public void onLogout(Event event) {
-        if (null != event && event.getEventCode() == Const.EventCode.LOG_OUT) {
-            lazyLoadData();
-        }
-    }
-
-
-    @Subscriber
-    public void onArticleCollected(Event<Article> event) {
-        if (null == event) {
-            return;
-        }
-        if (event.getEventCode() == Const.EventCode.COLLECT_ARTICLE) {
-            Article article = event.getData();
-            for (Article item : adapter.getData()) {
-                if (article.getId() == item.getId()) {
-                    item.setCollect(article.isCollect());
-                }
-            }
-            adapter.notifyDataSetChanged();
-        }
-    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
